@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenis Actual | Comparador de jugadores</title>
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="players.html">Lista de jugadores</a>
+            <a href="cookies.html">Cookies</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="comparator">
+            <h1 class="comparator__title">Comparador de jugadores</h1>
+
+            <!-- Selección de jugadores -->
+            <form class="comparator__form" id="compare-form" novalidate>
+
+                <div class="comparator__field">
+                    <label for="player-one">Jugador 1</label>
+                    <select id="player-one" name="player-one">
+                        <!-- JS insertará las opciones -->
+                    </select>
+                </div>
+
+                <div class="comparator__field">
+                    <label for="player-two">Jugador 2</label>
+                    <select id="player-two" name="player-two">
+                        <!-- JS insertará las opciones -->
+                    </select>
+                </div>
+
+                <button type="submit">Comparar</button>
+            </form>
+
+            <!-- Resultado de la comparación -->
+            <section class="comparator__result" id="comparison-result">
+                <!--
+                    JS renderizará aquí:
+                    - Datos del jugador 1
+                    - Datos del jugador 2
+                    - Comparativa de estadísticas
+                -->
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Proyecto Tenis</p>
+    </footer>
+
+</body>
+</html>
