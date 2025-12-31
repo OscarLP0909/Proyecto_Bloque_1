@@ -4,41 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <header>
-        <nav aria-label="Navegación Principal">
-            <a href="#intro">Introducción al Proyecto</a>
-            <a href="#tennis_actual">El Tenis Actualmente</a>
-            <a href="cookies.html">Cookies</a>
-            <a href="contact.html">Contacto</a>
-        </nav>
-    </header>
+<header id="header-section">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" aria-label="Navegación Principal">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#intro">El Tenis en la Actualidad</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="#intro">Introducción al proyecto</a>
+          <a class="nav-link" href="#tennis_actual">El tenis actualmente</a>
+          <a class="nav-link" href="cookies.html">Cookies</a>
+          <a class="nav-link" href="contact.html">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
     <main>
         <section id="intro">
             <h1 class="intro__title">Introducción al Proyecto</h1>
                 <p class="intro__text">
-                    Proyecto web dedicado a analizar y visualizar información
-                    sobre los principales jugadores de tenis profesional en la
-                    actualidad.
-            </p>
+                    Este proyecto web tiene como objetivo analizar, organizar y visualizar información relevante sobre los principales jugadores de tenis profesional en la actualidad, haciendo énfasis tanto en su rendimiento deportivo como en su impacto dentro del circuito ATP.</p>
+                <p class="intro__text">
+                La aplicación pretende servir como herramienta informativa y divulgativa, facilitando a los usuarios el acceso a datos clave como rankings, trayectorias, estadísticas destacadas y rivalidades más importantes del tenis moderno. Asimismo, el proyecto está orientado a poner en práctica conocimientos de desarrollo web utilizando tecnologías como HTML, CSS y JavaScript, incorporando una estructura clara, diseño responsivo y contenidos dinámicos.</p>
+                <p class="intro__text">
+                El enfoque principal no es solo mostrar datos, sino contextualizarlos, permitiendo comprender cómo ha evolucionado el tenis en los últimos años y qué factores influyen en el dominio de ciertos jugadores en el circuito profesional.</p>
         </section>
 
         <section id="tennis_actual">
-            <h2 class="intro__subtitle">El tenis en la Actualidad</h2>
+            <h2 class="intro__subtitle">El Tenis Actualmente</h2>
             <p class="intro__text">
-                El tenis profesional vive una etapa de transición con nuevas
-                figuras emergentes y una alta competitividad en los rankings
-                internacionales. 
-                Podemos destacar nombres como los de Carlos Alcaraz y Jannik Sinner, que actualmente ocupan el puesto número 1 y número 2 del ranking mundial.
-                Muchos aficionados ven esta rivalidad como un "clon" de la rivalidad que había entre Federer y Nadal.
-            </p>
+                El tenis profesional atraviesa actualmente una etapa de transición generacional marcada por el relevo de grandes leyendas y la consolidación de nuevas figuras que dominan los rankings internacionales. Tras más de una década protagonizada por jugadores históricos como Roger Federer, Rafael Nadal o Novak Djokovic, el circuito ha dado paso a una nueva era caracterizada por una mayor igualdad competitiva y estilos de juego más físicos y agresivos.</p>
+
+                <p class="intro__text">
+                En este contexto, destacan especialmente Carlos Alcaraz y Jannik Sinner, quienes se han consolidado como los dos jugadores más influyentes del circuito, ocupando el número 1 y número 2 del ranking mundial respectivamente. Ambos representan modelos distintos de juego, pero comparten juventud, consistencia y una mentalidad competitiva que recuerda a las grandes rivalidades del pasado.</p>
+                <p class="intro__text">
+                Muchos aficionados y expertos consideran esta rivalidad como una especie de continuación generacional de duelos históricos como Federer vs Nadal, no solo por su frecuencia en finales importantes, sino por el contraste de estilos y la expectación que generan en cada enfrentamiento.</p>
+                <p class="intro__text">
+                Además, el tenis actual se caracteriza por:</p>
+                
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item">Una preparación física más exigente</li>
+                    <li class="list-group-item">La incorporación intensiva de tecnología y análisis de datos</li>
+                    <li class="list-group-item">Superficies cada vez más homogéneas</li>
+                    <li class="list-group-item">Un calendario altamente competitivo</li>
+                </ul>
+                <p class="intro__text">Todos estos factores influyen directamente en el rendimiento de los jugadores y en la evolución constante del juego.</p>
         </section>
 
     </main>
     <footer>
-        <p>&copy; 2026 Proyecto Tenis</p>
+        &copy; 2026 Proyecto Tenis
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
