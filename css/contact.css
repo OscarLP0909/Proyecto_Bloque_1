@@ -72,6 +72,12 @@ a {
     border-radius: 0.625rem;
 }
 
+.form__group input:hover,
+.form__group textarea:hover{
+    background-color: rgb(183, 183, 183);
+    color: white;
+}
+
 button {
     padding: 0.5rem;
     border-radius: 0.625rem;
@@ -79,8 +85,9 @@ button {
     margin-left: 2.1875rem;
 }
 
-button:hover { /*Añadir hover para el botón*/
-
+button:hover { 
+    color: white;
+    background: black;
 }
 
 footer {
