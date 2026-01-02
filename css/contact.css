@@ -17,19 +17,19 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    margin: 30px 20px;
+    margin: 1.875rem 1.25rem;
 }
 
 nav {
-    border: 5px solid black;
-    border-radius: 10px;
-    padding: 15px;
-    gap: 20px;
+    border: 0.3125rem solid black;
+    border-radius: 0.625rem;
+    padding: 0.9375rem;
+    gap: 1.25rem;
 }
 
 a {
-    margin: 10px 10px;
-    padding: 10px;
+    margin: 0.625rem 0.625rem;
+    padding: 0.625rem;
     color: rgb(46, 51, 55);
 }
 
@@ -38,55 +38,49 @@ a {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin: 30px;
+    margin: 1.875rem;
 }
 
 .contact__title {
-    font-size: 52px;
+    font-size: 3.25rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 .contact__text {
-    margin: 20px 20px;
-    font-size: 18px;
+    margin: 1.25rem 1.25rem;
+    font-size: 1.125rem;
     font-weight:  500;
-}
-
-#contact-form {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
 }
 
 .form__group {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 15px;
+    max-width: 25rem;
+    margin-bottom: 0.9375rem;
 }
 
 .form__group label {
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
     font-weight: 500;
 }
 
 .form__group input,
 .form__group textarea {
-    padding: 8px;
-    border-radius: 10px;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
 }
 
 button {
-    padding: 8px;
-    border-radius: 10px;
-    gap: 20px;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+    gap: 1.25rem;
+    margin-left: 2.1875rem;
 }
 
-button:hover {
-    
+button:hover { /*Añadir hover para el botón*/
+
 }
 
 footer {
@@ -94,7 +88,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     color: white;
     text-align: center;
 }
