@@ -3,57 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenis Actual | Comparador de jugadores</title>
+    <title>Comparador de Pilotos | Fórmula 1</title>
+    <link rel="stylesheet" href="../css/compare.css">
 </head>
 <body>
 
-    <header>
-        <nav aria-label="Navegación principal">
-            <a href="index.html">Inicio</a>
-            <a href="players.html">Lista de jugadores</a>
-            <a href="cookies.html">Cookies</a>
-        </nav>
-    </header>
+<header id="header-section">
+    <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="drivers.html">Pilotos</a>
+        <a href="compare.html">Comparativa</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="contact.html">Contacto</a>
+    </nav>
+</header>
 
-    <main>
-        <section id="comparator">
-            <h1 class="comparator__title">Comparador de jugadores</h1>
+<main class="main-container">
 
-            <!-- Selección de jugadores -->
-            <form class="comparator__form" id="compare-form" novalidate>
+    <section id="comparator" class="section">
+        <h1 class="comparator__title">Comparador de Pilotos</h1>
 
-                <div class="comparator__field">
-                    <label for="player-one">Jugador 1</label>
-                    <select id="player-one" name="player-one">
-                        <!-- JS insertará las opciones -->
-                    </select>
-                </div>
+        <p class="comparator__description">
+            Selecciona dos pilotos de Fórmula 1 para comparar sus principales
+            estadísticas, trayectoria y datos relevantes de la temporada.
+        </p>
 
-                <div class="comparator__field">
-                    <label for="player-two">Jugador 2</label>
-                    <select id="player-two" name="player-two">
-                        <!-- JS insertará las opciones -->
-                    </select>
-                </div>
+        <!-- Selección de pilotos -->
+        <form class="comparator__form" id="compare-form" novalidate>
 
-                <button type="submit">Comparar</button>
-            </form>
+            <div class="comparator__field">
+                <label for="driver-one">Piloto 1</label>
+                <select id="driver-one" name="driver-one">
+                    <!-- JS insertará las opciones -->
+                </select>
+            </div>
 
-            <!-- Resultado de la comparación -->
-            <section class="comparator__result" id="comparison-result">
-                <!--
-                    JS renderizará aquí:
-                    - Datos del jugador 1
-                    - Datos del jugador 2
-                    - Comparativa de estadísticas
-                -->
-            </section>
+            <div class="comparator__field">
+                <label for="driver-two">Piloto 2</label>
+                <select id="driver-two" name="driver-two">
+                    <!-- JS insertará las opciones -->
+                </select>
+            </div>
+
+            <button type="submit">Comparar</button>
+        </form>
+
+        <!-- Resultado de la comparación -->
+        <section class="comparator__result" id="comparison-result">
+            <!--
+                JS renderizará aquí:
+                - Datos del piloto 1
+                - Datos del piloto 2
+                - Comparativa de estadísticas
+            -->
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 Proyecto Tenis</p>
-    </footer>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Proyecto Fórmula 1</p>
+</footer>
 
 </body>
 </html>
