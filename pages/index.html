@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+
 <header id="header-section">
   <nav class="navbar navbar-expand-lg bg-body-tertiary" aria-label="Navegación Principal">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#intro">El Tenis en la Actualidad</a>
+      <a class="navbar-brand" href="">La F1 en la Actualidad</a>
 
       <button
         class="navbar-toggler"
@@ -31,52 +32,73 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="#intro">Introducción al proyecto</a>
-          <a class="nav-link" href="#tennis_actual">El tenis actualmente</a>
+          <a class="nav-link" href="#f1_actual">La F1 actualmente</a>
+          <a class="nav-link" href="drivers.html">Pilotos</a>
           <a class="nav-link" href="cookies.html">Cookies</a>
           <a class="nav-link" href="contact.html">Contacto</a>
+
         </div>
       </div>
     </div>
   </nav>
 </header>
 
-    <main>
-        <section id="intro">
-            <h1 class="intro__title">Introducción al Proyecto</h1>
-                <p class="intro__text">
-                    Este proyecto web tiene como objetivo analizar, organizar y visualizar información relevante sobre los principales jugadores de tenis profesional en la actualidad, haciendo énfasis tanto en su rendimiento deportivo como en su impacto dentro del circuito ATP.</p>
-                <p class="intro__text">
-                La aplicación pretende servir como herramienta informativa y divulgativa, facilitando a los usuarios el acceso a datos clave como rankings, trayectorias, estadísticas destacadas y rivalidades más importantes del tenis moderno. Asimismo, el proyecto está orientado a poner en práctica conocimientos de desarrollo web utilizando tecnologías como HTML, CSS y JavaScript, incorporando una estructura clara, diseño responsivo y contenidos dinámicos.</p>
-                <p class="intro__text">
-                El enfoque principal no es solo mostrar datos, sino contextualizarlos, permitiendo comprender cómo ha evolucionado el tenis en los últimos años y qué factores influyen en el dominio de ciertos jugadores en el circuito profesional.</p>
-        </section>
+<main class="main-container">
 
-        <section id="tennis_actual">
-            <h2 class="intro__subtitle">El Tenis Actualmente</h2>
-            <p class="intro__text">
-                El tenis profesional atraviesa actualmente una etapa de transición generacional marcada por el relevo de grandes leyendas y la consolidación de nuevas figuras que dominan los rankings internacionales. Tras más de una década protagonizada por jugadores históricos como Roger Federer, Rafael Nadal o Novak Djokovic, el circuito ha dado paso a una nueva era caracterizada por una mayor igualdad competitiva y estilos de juego más físicos y agresivos.</p>
+    <section id="intro" class="section">
+        <h1 class="intro__title">Introducción al Proyecto</h1>
 
-                <p class="intro__text">
-                En este contexto, destacan especialmente Carlos Alcaraz y Jannik Sinner, quienes se han consolidado como los dos jugadores más influyentes del circuito, ocupando el número 1 y número 2 del ranking mundial respectivamente. Ambos representan modelos distintos de juego, pero comparten juventud, consistencia y una mentalidad competitiva que recuerda a las grandes rivalidades del pasado.</p>
-                <p class="intro__text">
-                Muchos aficionados y expertos consideran esta rivalidad como una especie de continuación generacional de duelos históricos como Federer vs Nadal, no solo por su frecuencia en finales importantes, sino por el contraste de estilos y la expectación que generan en cada enfrentamiento.</p>
-                <p class="intro__text">
-                Además, el tenis actual se caracteriza por:</p>
-                
-                <ul class="list-group list-group-flush ">
-                    <li class="list-group-item">Una preparación física más exigente</li>
-                    <li class="list-group-item">La incorporación intensiva de tecnología y análisis de datos</li>
-                    <li class="list-group-item">Superficies cada vez más homogéneas</li>
-                    <li class="list-group-item">Un calendario altamente competitivo</li>
-                </ul>
-                <p class="intro__text">Todos estos factores influyen directamente en el rendimiento de los jugadores y en la evolución constante del juego.</p>
-        </section>
+        <p class="intro__text">
+            Este proyecto web tiene como objetivo analizar, organizar y presentar información relevante sobre la Fórmula 1 en la actualidad, prestando especial atención tanto al rendimiento deportivo de los pilotos como al papel estratégico de los equipos dentro del campeonato mundial.
+        </p>
 
-    </main>
-    <footer>
-        &copy; 2026 Proyecto Tenis
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <p class="intro__text">
+            La aplicación pretende servir como una herramienta informativa y divulgativa, facilitando a los usuarios el acceso a datos clave como clasificaciones generales, estadísticas destacadas, trayectorias de los pilotos, evolución de los monoplazas y rivalidades más importantes de la parrilla actual.
+        </p>
+
+        <p class="intro__text">
+            Además del contenido informativo, el proyecto tiene un enfoque práctico orientado a la aplicación de conocimientos de desarrollo web mediante el uso de tecnologías como HTML, CSS y JavaScript, incorporando una estructura clara, un diseño responsivo y una organización adecuada de la información.
+        </p>
+    </section>
+
+    <section id="f1_actual" class="section">
+        <h2 class="intro__subtitle">La Fórmula 1 Actualmente</h2>
+
+        <p class="intro__text">
+            La Fórmula 1 vive actualmente una etapa marcada por una fuerte evolución tecnológica y una intensa competencia entre equipos, donde la innovación, la aerodinámica y la estrategia juegan un papel decisivo en el rendimiento en pista. El reglamento técnico ha impulsado cambios importantes que han redefinido la forma de competir en el campeonato.
+        </p>
+
+        <p class="intro__text">
+            En este contexto, pilotos como Max Verstappen, Lewis Hamilton o Charles Leclerc destacan como referentes del campeonato, combinando talento, experiencia y una gran capacidad de adaptación a las exigencias de la categoría. Al mismo tiempo, nuevos pilotos continúan incorporándose a la parrilla, aportando frescura y competitividad.
+        </p>
+
+        <p class="intro__text">
+            Las rivalidades actuales no solo se desarrollan entre pilotos, sino también entre escuderías históricas y nuevos proyectos que buscan consolidarse en la élite del automovilismo mundial, aumentando el interés y la expectación en cada temporada.
+        </p>
+
+        <p class="intro__text">
+            La Fórmula 1 moderna se caracteriza por:
+        </p>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Un alto nivel de desarrollo tecnológico e innovación constante</li>
+            <li class="list-group-item">La importancia estratégica de la gestión de neumáticos y paradas en boxes</li>
+            <li class="list-group-item">Un reglamento en constante evolución</li>
+            <li class="list-group-item">Un calendario global con circuitos históricos y urbanos</li>
+        </ul>
+
+        <p class="intro__text">
+            Todos estos elementos influyen directamente en el rendimiento de los equipos y pilotos, y explican la complejidad y el atractivo de la Fórmula 1 actual.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2026 Proyecto Fórmula 1
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

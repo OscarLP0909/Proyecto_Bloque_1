@@ -1,101 +1,154 @@
+/* RESET */
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
+/* BASE */
 body {
     font-family: 'Roboto', sans-serif;
-    background:
-    linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255,255,255,0));
+    background: linear-gradient(
+        to right,
+        rgba(30, 75, 115, 1),
+        rgba(255, 255, 255, 0)
+    );
+    color: #1f2933;
+    line-height: 1.7;
 }
 
+/* HEADER */
 #header-section {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    margin: 1.875rem 1.25rem;
+    margin: 1.5rem 0;
 }
 
-nav {
-    border: 0.3125rem solid black;
-    border-radius: 0.625rem;
-    padding: 0.9375rem;
-    gap: 1.25rem;
+nav.navbar {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-a {
-    margin: 0.625rem 0.625rem;
-    padding: 0.625rem;
-    color: rgb(46, 51, 55);
+.navbar-brand {
+    font-weight: 600;
+    color: #0f2a44;
 }
 
-#contact {
+.nav-link {
+    font-weight: 500;
+    color: #1e4b73;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 1.875rem;
 }
 
+/* SECCIÓN CONTACTO (TEXTO + FORMULARIO) */
+#contact {
+    width: 100%;
+    max-width: 720px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* TÍTULO */
 .contact__title {
-    font-size: 3.25rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 2.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    color: #0f2a44;
 }
 
+/* TEXTO */
 .contact__text {
-    margin: 1.25rem 1.25rem;
-    font-size: 1.125rem;
-    font-weight:  500;
+    font-size: 1.05rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #344054;
 }
 
+/* FORMULARIO */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CAMPOS */
 .form__group {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 25rem;
-    margin-bottom: 0.9375rem;
+    margin-bottom: 1.25rem;
 }
 
 .form__group label {
-    margin-bottom: 0.3125rem;
+    margin-bottom: 0.4rem;
     font-weight: 500;
+    color: #163a5f;
 }
 
 .form__group input,
 .form__group textarea {
-    padding: 0.5rem;
-    border-radius: 0.625rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.6rem;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
 }
 
-.form__group input:hover,
-.form__group textarea:hover{
-    background-color: rgb(183, 183, 183);
-    color: white;
+.form__group input:focus,
+.form__group textarea:focus {
+    outline: none;
+    border-color: #1e4b73;
+    box-shadow: 0 0 0 2px rgba(30, 75, 115, 0.2);
 }
 
+.form__group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* BOTÓN */
 button {
-    padding: 0.5rem;
-    border-radius: 0.625rem;
-    gap: 1.25rem;
-    margin-left: 2.1875rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: #1e4b73;
+    color: #ffffff;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-button:hover { 
-    color: white;
-    background: black;
+button:hover {
+    background-color: #163a5f;
+    transform: translateY(-1px);
 }
 
+/* FOOTER */
 footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    margin-top: 1.25rem;
-    color: white;
+    background: linear-gradient(
+        to right,
+        rgba(30, 75, 115, 1),
+        rgba(255, 255, 255, 0)
+    );
+    color: #ffffff;
     text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
 }
