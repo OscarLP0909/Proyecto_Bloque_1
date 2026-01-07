@@ -44,7 +44,7 @@ nav a:hover {
 
 /* CONTENEDOR PRINCIPAL */
 .main-container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     padding: 2rem 1.5rem 4rem;
 }
@@ -135,7 +135,7 @@ nav a:hover {
 }
 
 .driver-flag {
-    width: 20px;
+    width: 1.25rem;
     height: auto;
 }
 
