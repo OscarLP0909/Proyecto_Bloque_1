@@ -17,6 +17,55 @@ body {
     line-height: 1.7;
 }
 
+@import url("./drivers.css");
+
+
+.driver-stats {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #1f2933;
+}
+
+.driver-stats p {
+    margin: 0.4rem 0;
+}
+
+.driver-card {
+    max-width: 320px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+
+.driver-card img {
+    width: 100%;
+    max-width: 7.5rem; 
+    height: auto;
+    margin: 0 auto;     
+    display: block;
+}
+
+.driver-stats {
+    margin-top: 1.5rem;
+}
+
+.driver-stats p {
+    margin: 0.5rem 0;
+}
+
+.driver-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.driver-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+
 /* HEADER */
 #header-section {
     display: flex;
@@ -83,6 +132,31 @@ nav a:hover {
 }
 
 /* INFORMACIÓN */
+.detail__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail__card p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #1f2933;
+}
+
+.detail__card strong {
+    color: #0f2a44;
+}
+
+
 .detail__info {
     display: flex;
     flex-direction: column;
