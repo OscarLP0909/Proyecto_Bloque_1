@@ -31,7 +31,7 @@ nav.navbar {
     background-color: #ffffff;
     padding: 1rem 2rem;
     border-radius: 0.75rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
 }
 
 .navbar-brand {
@@ -50,7 +50,7 @@ nav.navbar {
 
 /* CONTENEDOR PRINCIPAL */
 .main-container {
-    max-width: 1100px;
+    max-width: 68.75rem;
     margin: 0 auto;
     padding: 2rem 1.5rem 4rem 1.5rem;
 }
@@ -61,7 +61,7 @@ nav.navbar {
     border-radius: 1rem;
     padding: 2.5rem;
     margin-bottom: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
 }
 
 /* TÍTULOS */
@@ -93,7 +93,7 @@ nav.navbar {
 
 /* LISTA */
 .list-group {
-    max-width: 700px;
+    max-width: 43.75rem;
     margin: 2rem auto;
 }
 
@@ -102,7 +102,7 @@ nav.navbar {
     font-size: 1rem;
     color: #1f2933;
     border: none;
-    border-left: 4px solid #1e4b73;
+    border-left: 0.25rem solid #1e4b73;
     padding-left: 1rem;
 }
 
