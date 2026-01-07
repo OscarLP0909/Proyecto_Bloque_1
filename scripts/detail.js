@@ -38,7 +38,7 @@ function buildCard(driver, result) {
     img.alt = driver.full_name;
     card.appendChild(img);
 
-    // Header (nombre + bandera)
+    // Header 
     const header = document.createElement("div");
     header.classList.add("driver-header");
 
