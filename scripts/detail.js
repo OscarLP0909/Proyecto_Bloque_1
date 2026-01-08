@@ -5,7 +5,7 @@ const driverNumber = Number(params.get("driver"));
 
 console.log(driverNumber);
 
-fetch("https://api.openf1.org/v1/drivers?session_key=latest")
+fetch("https://api.openf1.org/v1/drivers?session_key=9839")
     .then(res => res.json())
     .then(drivers => {
         const driver = drivers.find(d => d.driver_number === driverNumber);
@@ -16,7 +16,7 @@ fetch("https://api.openf1.org/v1/drivers?session_key=latest")
 
 
     function renderDriver(driver) {
-    fetch("https://api.openf1.org/v1/session_result?session_key=latest")
+    fetch("https://api.openf1.org/v1/session_result?session_key=9839")
         .then(res => res.json())
         .then(results => {
             const result = results.find(r => r.driver_number === driverNumber);
