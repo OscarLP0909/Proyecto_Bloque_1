@@ -27,24 +27,57 @@ fetch("https://api.openf1.org/v1/drivers?session_key=9839")
 }
 
 function buildCard(driver, result) {
-    // LIMPIAR CONTENEDOR (por si acaso)
+    // LIMPIAR CONTENEDOR
     detailContainer.innerHTML = "";
 
     // CONTENEDOR PRINCIPAL
     const inner = document.createElement("div");
     inner.classList.add("driver-detail__inner");
 
-    // ----- IMAGEN -----
+    // =====================
+    // IMAGEN / AVATAR
+    // =====================
     const imageWrapper = document.createElement("div");
     imageWrapper.classList.add("driver-detail__image");
 
-    const img = document.createElement("img");
-    img.src = driver.headshot_url;
-    img.alt = driver.full_name;
+    let avatarElement;
 
-    imageWrapper.appendChild(img);
+    if (driver.headshot_url) {
+        const img = document.createElement("img");
+        img.src = driver.headshot_url;
+        img.alt = driver.full_name;
 
-    // ----- INFO -----
+        img.onerror = () => {
+            createInitialAvatar();
+            imageWrapper.replaceChildren(avatarElement);
+        };
+
+        avatarElement = img;
+    } else {
+        createInitialAvatar();
+    }
+
+    function createInitialAvatar() {
+        const initials = driver.full_name
+            .split(" ")
+            .map(word => word[0])
+            .join("");
+
+        const avatar = document.createElement("div");
+        avatar.classList.add("driver-avatar");
+        avatar.innerText = initials;
+
+        avatar.style.backgroundColor = `#${driver.team_colour}`;
+        avatar.style.color = "#ffffff";
+
+        avatarElement = avatar;
+    }
+
+    imageWrapper.appendChild(avatarElement);
+
+    // =====================
+    // INFO
+    // =====================
     const info = document.createElement("div");
     info.classList.add("driver-detail__info");
 
@@ -57,14 +90,6 @@ function buildCard(driver, result) {
     const team = document.createElement("span");
     team.classList.add("driver-team");
     team.textContent = driver.team_name;
-
-    // Estado
-    const status = document.createElement("div");
-    status.classList.add("driver-status");
-    status.textContent =
-        result.dnf ? "ABANDONÓ" :
-        result.dsq ? "DESCALIFICADO" :
-        "CARRERA TERMINADA";
 
     // Estadísticas
     const stats = document.createElement("div");
@@ -83,14 +108,17 @@ function buildCard(driver, result) {
     statData.forEach(([label, value]) => {
         const row = document.createElement("div");
         row.classList.add("driver-stat");
-
-        row.innerHTML = `
-            <span>${label}</span>
-            <span>${value}</span>
-        `;
-
+        row.innerHTML = `<span>${label}</span><span>${value}</span>`;
         stats.appendChild(row);
     });
+
+    // Estado
+    const status = document.createElement("div");
+    status.classList.add("driver-status");
+    status.textContent =
+        result.dnf ? "ABANDONÓ" :
+        result.dsq ? "DESCALIFICADO" :
+        "CARRERA TERMINADA";
 
     // ENSAMBLAR INFO
     info.appendChild(name);
@@ -104,6 +132,7 @@ function buildCard(driver, result) {
 
     detailContainer.appendChild(inner);
 }
+
 
 
 
