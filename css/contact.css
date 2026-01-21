@@ -1,38 +1,37 @@
 /* RESET */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 /* BASE */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(
-        to right,
-        rgba(30, 75, 115, 1),
-        rgba(255, 255, 255, 0)
-    );
+    background-color: #f5f7fa;
     color: #1f2933;
     line-height: 1.7;
 }
 
 /* HEADER */
 #header-section {
-    display: flex;
-    justify-content: center;
-    margin: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav.navbar {
+    width: 100%;
     background-color: #ffffff;
-    padding: 1rem 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+}
+
+.navbar .container {
+    padding: 1rem 1.5rem;
 }
 
 .navbar-brand {
-    font-weight: 600;
+    font-weight: 700;
     color: #0f2a44;
 }
 
@@ -45,48 +44,53 @@ nav.navbar {
     text-decoration: underline;
 }
 
-/* CONTENIDO PRINCIPAL */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+/* HERO DE PÁGINA */
+.page-hero {
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(30,75,115,0.9), transparent 60%),
+        linear-gradient(135deg, #0f2a44, #1e4b73);
+    color: white;
 }
 
-/* SECCIÓN CONTACTO (TEXTO + FORMULARIO) */
-#contact {
-    width: 100%;
+.page-hero__title {
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.page-hero__subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* CONTENEDOR */
+.main-container {
     max-width: 720px;
-    background-color: rgba(255, 255, 255, 0.95);
+    margin: -3.5rem auto 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+    position: relative;
+}
+
+/* TARJETA CONTACTO */
+.contact-card {
+    background-color: white;
     border-radius: 1rem;
     padding: 2.5rem;
-    margin-bottom: 3rem;
-    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.12);
+    margin-top: 2.2rem;
 }
 
-/* TÍTULO */
-.contact__title {
-    font-size: 2.6rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1.25rem;
-    color: #0f2a44;
-}
-
-/* TEXTO */
-.contact__text {
-    font-size: 1.05rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #344054;
-}
-
-/* FORMULARIO */
-form {
+/* FORM */
+#contact-form {
     display: flex;
     flex-direction: column;
 }
 
-/* CAMPOS */
 .form__group {
     display: flex;
     flex-direction: column;
@@ -101,7 +105,7 @@ form {
 
 .form__group input,
 .form__group textarea {
-    padding: 0.65rem 0.75rem;
+    padding: 0.7rem 0.8rem;
     border-radius: 0.6rem;
     border: 1px solid #cbd5e1;
     font-size: 1rem;
@@ -116,39 +120,46 @@ form {
 
 .form__group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 130px;
 }
 
 /* BOTÓN */
-button {
+.btn-submit {
     margin-top: 1.5rem;
-    padding: 0.75rem 2rem;
+    align-self: center;
+    padding: 0.75rem 2.25rem;
     font-size: 1rem;
     font-weight: 500;
+    border-radius: 999px;
     border: none;
-    border-radius: 0.6rem;
     background-color: #1e4b73;
-    color: #ffffff;
+    color: white;
     cursor: pointer;
-    align-self: center;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-button:hover {
+.btn-submit:hover {
     background-color: #163a5f;
     transform: translateY(-1px);
 }
 
 /* FOOTER */
 footer {
-    background: linear-gradient(
-        to right,
-        rgba(30, 75, 115, 1),
-        rgba(255, 255, 255, 0)
-    );
-    color: #ffffff;
     text-align: center;
+    background: linear-gradient(135deg, #0f2a44, #1e4b73);
+    color: white;
     padding: 1.5rem;
     font-size: 0.9rem;
-    width: 100%;
+    margin-top: 4rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav.navbar {
+        border-radius: 0;
+    }
+
+    .main-container {
+        margin-top: -2rem;
+    }
 }
