@@ -101,6 +101,9 @@ form.addEventListener("submit", (event) => {
         function buildResultCard(result, driver) {
                 const card = document.createElement("article");
                 card.classList.add("comparator-card");
+                card.style.borderTop = `4px solid #${driver.team_colour}`;
+                card.style.boxShadow = `0 18px 40px rgba(0,0,0,0.12)`;
+
 
                 const img = document.createElement("img");
                 img.src = driver.headshot_url;

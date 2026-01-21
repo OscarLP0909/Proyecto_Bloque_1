@@ -27,54 +27,83 @@ fetch("https://api.openf1.org/v1/drivers?session_key=9839")
 }
 
 function buildCard(driver, result) {
-    const card = document.createElement("article");
-    card.classList.add("driver-card");
-    card.style.backgroundColor = `#${driver.team_colour}22`;
-    card.style.color = `#${driver.team_colour}`;
+    // LIMPIAR CONTENEDOR (por si acaso)
+    detailContainer.innerHTML = "";
 
-    // Imagen
+    // CONTENEDOR PRINCIPAL
+    const inner = document.createElement("div");
+    inner.classList.add("driver-detail__inner");
+
+    // ----- IMAGEN -----
+    const imageWrapper = document.createElement("div");
+    imageWrapper.classList.add("driver-detail__image");
+
     const img = document.createElement("img");
     img.src = driver.headshot_url;
     img.alt = driver.full_name;
-    card.appendChild(img);
 
-    // Header 
-    const header = document.createElement("div");
-    header.classList.add("driver-header");
+    imageWrapper.appendChild(img);
 
-    const name = document.createElement("span");
-    name.classList.add("driver-name");
-    name.innerText = driver.full_name;
-    name.style.backgroundColor = `#${driver.team_colour}22`;
+    // ----- INFO -----
+    const info = document.createElement("div");
+    info.classList.add("driver-detail__info");
 
-    header.appendChild(name);
-    card.appendChild(header);
+    // Nombre
+    const name = document.createElement("h2");
+    name.textContent = driver.full_name;
+    name.style.color = `#${driver.team_colour}`;
 
     // Equipo
-    const team = document.createElement("p");
+    const team = document.createElement("span");
     team.classList.add("driver-team");
-    team.innerText = driver.team_name;
-    card.appendChild(team);
+    team.textContent = driver.team_name;
 
-    // --- RESULTADOS ---
+    // Estado
+    const status = document.createElement("div");
+    status.classList.add("driver-status");
+    status.textContent =
+        result.dnf ? "ABANDONÓ" :
+        result.dsq ? "DESCALIFICADO" :
+        "CARRERA TERMINADA";
+
+    // Estadísticas
     const stats = document.createElement("div");
     stats.classList.add("driver-stats");
 
-    stats.innerHTML = `
-        <p><strong>Posición:</strong> ${result.position}</p>
-        <p><strong>Puntos:</strong> ${result.points}</p>
-        <p><strong>Vueltas:</strong> ${result.number_of_laps}</p>
-        <p><strong>Estado:</strong> ${
-            result.dnf ? "Abandonó" :
-            result.dsq ? "Descalificado" :
-            "Acabó la carrera"
-        }</p>
-        ${result.gap_to_leader ? `<p><strong>Gap líder:</strong> +${result.gap_to_leader}s</p>` : ""}
-    `;
+    const statData = [
+        ["Posición", result.position],
+        ["Puntos", result.points],
+        ["Vueltas", result.number_of_laps],
+    ];
 
-    card.appendChild(stats);
+    if (result.gap_to_leader) {
+        statData.push(["Gap líder", `+${result.gap_to_leader}s`]);
+    }
 
-    detailContainer.appendChild(card);
+    statData.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.classList.add("driver-stat");
+
+        row.innerHTML = `
+            <span>${label}</span>
+            <span>${value}</span>
+        `;
+
+        stats.appendChild(row);
+    });
+
+    // ENSAMBLAR INFO
+    info.appendChild(name);
+    info.appendChild(team);
+    info.appendChild(stats);
+    info.appendChild(status);
+
+    // ENSAMBLAR TODO
+    inner.appendChild(imageWrapper);
+    inner.appendChild(info);
+
+    detailContainer.appendChild(inner);
 }
+
 
 

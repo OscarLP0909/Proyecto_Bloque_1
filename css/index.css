@@ -1,41 +1,37 @@
 /* RESET */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 /* BASE */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(
-        to right,
-        rgba(30, 75, 115, 1),
-        rgba(255, 255, 255, 0)
-    );
+    background-color: #f5f7fa;
     color: #1f2933;
     line-height: 1.7;
 }
 
 /* HEADER */
 #header-section {
-    display: flex;
-    justify-content: center;
-    margin: 1.5rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav.navbar {
+    width: 100%;
     background-color: #ffffff;
-    padding: 1rem 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+}
+
+.navbar .container {
+    padding: 1rem 1.5rem;
 }
 
 .navbar-brand {
-    font-weight: 600;
+    font-weight: 700;
     color: #0f2a44;
 }
 
@@ -48,25 +44,76 @@ nav.navbar {
     text-decoration: underline;
 }
 
-/* CONTENEDOR PRINCIPAL */
-.main-container {
-    max-width: 68.75rem;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem 1.5rem;
+
+/* HERO */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(30,75,115,0.9), transparent 60%),
+        linear-gradient(135deg, #0f2a44, #1e4b73);
+    color: white;
 }
 
-/* SECCIONES */
+.hero__content {
+    max-width: 900px;
+}
+
+.hero__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.hero__title span {
+    color: #9cc4ff;
+}
+
+.hero__subtitle {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    opacity: 0.9;
+}
+
+.hero__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero__actions .btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    font-size: 1rem;
+}
+
+/* CONTENIDO */
+.main-container {
+    max-width: 1100px;
+    margin: -4rem auto 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+    position: relative;
+}
+
+/* SECTIONS */
 .section {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: white;
     border-radius: 1rem;
     padding: 2.5rem;
+    margin-top: 2.2rem;
     margin-bottom: 3rem;
-    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
-/* TÍTULOS */
 .intro__title {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -74,48 +121,55 @@ nav.navbar {
 }
 
 .intro__subtitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1.25rem;
     text-align: center;
     color: #1e4b73;
 }
 
-/* TEXTO */
 .intro__text {
-    font-size: 1.05rem;
-    margin-bottom: 1.25rem;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 1.25rem auto;
+    font-size: 1.05rem;
     color: #344054;
 }
 
-/* LISTA */
+/* LIST */
 .list-group {
-    max-width: 43.75rem;
+    max-width: 500px;
     margin: 2rem auto;
 }
 
 .list-group-item {
-    background-color: transparent;
-    font-size: 1rem;
-    color: #1f2933;
     border: none;
-    border-left: 0.25rem solid #1e4b73;
+    background: transparent;
     padding-left: 1rem;
+    border-left: 4px solid #1e4b73;
+    margin-bottom: 0.5rem;
 }
 
 /* FOOTER */
 footer {
-    background: linear-gradient(
-        to right,
-        rgba(30, 75, 115, 1),
-        rgba(255, 255, 255, 0)
-    );
-    color: #ffffff;
     text-align: center;
+    background: linear-gradient(135deg, #0f2a44, #1e4b73);
+    color: white;
     padding: 1.5rem;
     font-size: 0.9rem;
-    width: 100%;
+    margin-top: 4rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav.navbar {
+        border-radius: 0;
+    }
+
+    .hero {
+        padding-top: 6rem;
+    }
+
+    .main-container {
+        margin-top: -2rem;
+    }
 }
