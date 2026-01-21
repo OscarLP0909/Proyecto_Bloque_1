@@ -95,59 +95,91 @@ form.addEventListener("submit", (event) => {
             container.appendChild(card1)
             container.appendChild(card2)
 
-            
+
         })
 
-        function buildResultCard(result, driver) {
-                const card = document.createElement("article");
-                card.classList.add("comparator-card");
-                card.style.borderTop = `4px solid #${driver.team_colour}`;
-                card.style.boxShadow = `0 18px 40px rgba(0,0,0,0.12)`;
+    function buildResultCard(result, driver) {
+        const card = document.createElement("article");
+        card.classList.add("comparator-card");
+        card.style.borderTop = `4px solid #${driver.team_colour}`;
+        card.style.boxShadow = `0 18px 40px rgba(0,0,0,0.12)`;
 
 
-                const img = document.createElement("img");
-                img.src = driver.headshot_url;
-                img.alt = driver.full_name;
-                card.appendChild(img);
+        // IMAGEN / AVATAR
+        let avatarElement;
 
-                const header = document.createElement("div");
-                header.classList.add("driver-header");
+        if (driver.headshot_url) {
+            const img = document.createElement("img");
+            img.src = driver.headshot_url;
+            img.alt = driver.full_name;
 
-                const name = document.createElement("h2");
-                name.classList.add("driver-name");
-                name.innerText = driver.full_name;
-                name.style.backgroundColor = `#${driver.team_colour}22`;
+            img.onerror = () => {
+                createInitialAvatar();
+                card.replaceChild(avatarElement, img);
+            };
 
-                header.appendChild(name);
-                card.appendChild(header);
+            avatarElement = img;
+        } else {
+            createInitialAvatar();
+        }
 
-                const resultList = document.createElement("ul");
-                card.appendChild(resultList);
+        function createInitialAvatar() {
+            const initials = driver.full_name
+                .split(" ")
+                .map(word => word[0])
+                .join("");
 
-                const positionLi = document.createElement("li");
-                positionLi.innerText = `Posición: ${result.position}`
-                resultList.appendChild(positionLi);
+            const avatar = document.createElement("div");
+            avatar.classList.add("driver-avatar");
+            avatar.innerText = initials;
 
-                const pointsLi = document.createElement("li")
-                pointsLi.innerText = `Puntos: ${result.points}`
-                resultList.appendChild(pointsLi);
+            avatar.style.backgroundColor = `#${driver.team_colour}`;
+            avatar.style.color = "#ffffff";
 
-                const lapsLi = document.createElement("li")
-                lapsLi.innerText = `Vueltas: ${result.number_of_laps}`
-                resultList.appendChild(lapsLi);
+            avatarElement = avatar;
+        }
 
-                const status = document.createElement("li");
-                status.innerHTML = `
+        card.appendChild(avatarElement);
+
+
+        const header = document.createElement("div");
+        header.classList.add("driver-header");
+
+        const name = document.createElement("h2");
+        name.classList.add("driver-name");
+        name.innerText = driver.full_name;
+        name.style.backgroundColor = `#${driver.team_colour}22`;
+
+        header.appendChild(name);
+        card.appendChild(header);
+
+        const resultList = document.createElement("ul");
+        card.appendChild(resultList);
+
+        const positionLi = document.createElement("li");
+        positionLi.innerText = `Posición: ${result.position}`
+        resultList.appendChild(positionLi);
+
+        const pointsLi = document.createElement("li")
+        pointsLi.innerText = `Puntos: ${result.points}`
+        resultList.appendChild(pointsLi);
+
+        const lapsLi = document.createElement("li")
+        lapsLi.innerText = `Vueltas: ${result.number_of_laps}`
+        resultList.appendChild(lapsLi);
+
+        const status = document.createElement("li");
+        status.innerHTML = `
         <p><strong>Estado:</strong> ${result.dsq ? "Descalificado" :
-                        result.dnf ? "Abandonó" :
-                            "Acabó la carrera"
-                    }</p>
+                result.dnf ? "Abandonó" :
+                    "Acabó la carrera"
+            }</p>
     `;
 
-                resultList.appendChild(status);
+        resultList.appendChild(status);
 
-                return card;
-            }
+        return card;
+    }
 })
 
 

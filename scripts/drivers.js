@@ -38,10 +38,40 @@ fetch("https://api.openf1.org/v1/drivers?session_key=9839")
             card.style.backgroundColor = `#${driver.team_colour}22`;
             card.style.color = `#${driver.team_colour}`;
 
-            const img = document.createElement("img");
-            img.src = driver.headshot_url;
-            img.alt = `Foto de ${driver.full_name}`;
-            card.appendChild(img)
+            // CONTENEDOR AVATAR / FOTO
+let avatarElement;
+
+if (driver.headshot_url) {
+    // IMAGEN REAL
+    avatarElement = document.createElement("img");
+    avatarElement.src = driver.headshot_url;
+    avatarElement.alt = `Foto de ${driver.full_name}`;
+
+    avatarElement.onerror = () => {
+        createInitialAvatar();
+    };
+} else {
+    createInitialAvatar();
+}
+
+function createInitialAvatar() {
+    const initials = driver.full_name
+        .split(" ")
+        .map(word => word[0])
+        .join("");
+
+    const avatar = document.createElement("div");
+    avatar.classList.add("driver-avatar");
+    avatar.innerText = initials;
+
+    avatar.style.backgroundColor = `#${driver.team_colour}`;
+    avatar.style.color = "#ffffff";
+
+    avatarElement = avatar;
+}
+
+card.appendChild(avatarElement);
+
 
             const header = document.createElement("div");
             header.classList.add("driver-header");
