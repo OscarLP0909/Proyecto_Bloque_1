@@ -1,138 +1,181 @@
-const detailContainer = document.getElementById("detail-container");
+const resultsContainer = document.getElementById("results-container");
+const circuitImage = document.getElementById("circuit-image");
+const circuitName = document.getElementById("circuit-name");
 
 const params = new URLSearchParams(window.location.search);
 const driverNumber = Number(params.get("driver"));
 
-console.log(driverNumber);
+if (!driverNumber) {
+    console.error("No hay piloto seleccionado");
+}
 
-fetch("https://api.openf1.org/v1/drivers?session_key=9839")
-    .then(res => res.json())
-    .then(drivers => {
+initDetail();
+
+/* =========================
+   INIT
+========================= */
+async function initDetail() {
+    try {
+        const [
+            drivers,
+            raceResults,
+            qualiResults
+        ] = await Promise.all([
+            fetchJSON("https://api.openf1.org/v1/drivers?session_key=9839"),
+            fetchJSON("https://api.openf1.org/v1/session_result?session_key=9839"),
+            fetchJSON("https://api.openf1.org/v1/session_result?session_key=9835")
+        ]);
+
         const driver = drivers.find(d => d.driver_number === driverNumber);
-        if (!driver) return;
+        if (!driver) throw new Error("Piloto no encontrado");
 
-        renderDriver(driver);
-    });
+        const raceResult = raceResults.find(r => r.driver_number === driverNumber);
+        if (!raceResult) throw new Error("Resultado carrera no encontrado");
 
+        const qualiResult = qualiResults.find(r => r.driver_number === driverNumber);
 
-    function renderDriver(driver) {
-    fetch("https://api.openf1.org/v1/session_result?session_key=9839")
-        .then(res => res.json())
-        .then(results => {
-            const result = results.find(r => r.driver_number === driverNumber);
-            if (!result) return;
+        const meeting = await getMeetingCached(raceResult.meeting_key);
 
-            buildCard(driver, result);
-        });
+        renderDriverSummary(driver);
+        renderCircuit(meeting);
+        renderRaceCard(raceResult);
+        renderQualiCard(qualiResult);
+
+        document.getElementById("page-loader").classList.add("hidden");
+        document.getElementById("page-content").classList.remove("hidden");
+
+    } catch (error) {
+        console.error("Error cargando detalle:", error);
+
+        document.getElementById("page-loader")?.classList.add("hidden");
+    }
 }
 
-function buildCard(driver, result) {
-    // LIMPIAR CONTENEDOR
-    detailContainer.innerHTML = "";
+/* =========================
+   HELPER FETCH
+========================= */
+async function fetchJSON(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Error fetch ${url}`);
+    return res.json();
+}
 
-    // CONTENEDOR PRINCIPAL
-    const inner = document.createElement("div");
-    inner.classList.add("driver-detail__inner");
+/* =========================
+   CIRCUIT CACHE (ANTI 429)
+========================= */
+async function getMeetingCached(meetingKey) {
+    const cacheKey = `meeting_${meetingKey}`;
 
-    // =====================
-    // IMAGEN / AVATAR
-    // =====================
-    const imageWrapper = document.createElement("div");
-    imageWrapper.classList.add("driver-detail__image");
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+        return JSON.parse(cached);
+    }
 
-    let avatarElement;
+    const meetings = await fetchJSON(
+        `https://api.openf1.org/v1/meetings?meeting_key=${meetingKey}`
+    );
 
-    if (driver.headshot_url) {
-        const img = document.createElement("img");
-        img.src = driver.headshot_url;
-        img.alt = driver.full_name;
+    const meeting = meetings[0];
 
-        img.onerror = () => {
-            createInitialAvatar();
-            imageWrapper.replaceChildren(avatarElement);
-        };
+    sessionStorage.setItem(cacheKey, JSON.stringify(meeting));
+    return meeting;
+}
 
-        avatarElement = img;
+/* =========================
+   RENDER CIRCUITO
+========================= */
+function renderCircuit(meeting) {
+
+    if (!meeting) {
+        circuitName.textContent = "Circuito no disponible";
+        circuitImage.style.display = "none";
+        return;
+    }
+
+    circuitName.textContent = meeting.circuit_short_name || "Circuito desconocido";
+
+    if (meeting.circuit_image) {
+        circuitImage.decoding = "async";
+        circuitImage.loading = "lazy";
+        circuitImage.src = meeting.circuit_image;
+        circuitImage.alt = meeting.circuit_name;
+        circuitImage.style.display = "block";
     } else {
-        createInitialAvatar();
+        circuitImage.style.display = "none";
     }
-
-    function createInitialAvatar() {
-        const initials = driver.full_name
-            .split(" ")
-            .map(word => word[0])
-            .join("");
-
-        const avatar = document.createElement("div");
-        avatar.classList.add("driver-avatar");
-        avatar.innerText = initials;
-
-        avatar.style.backgroundColor = `#${driver.team_colour}`;
-        avatar.style.color = "#ffffff";
-
-        avatarElement = avatar;
-    }
-
-    imageWrapper.appendChild(avatarElement);
-
-    // =====================
-    // INFO
-    // =====================
-    const info = document.createElement("div");
-    info.classList.add("driver-detail__info");
-
-    // Nombre
-    const name = document.createElement("h2");
-    name.textContent = driver.full_name;
-    name.style.color = `#${driver.team_colour}`;
-
-    // Equipo
-    const team = document.createElement("span");
-    team.classList.add("driver-team");
-    team.textContent = driver.team_name;
-
-    // Estadísticas
-    const stats = document.createElement("div");
-    stats.classList.add("driver-stats");
-
-    const statData = [
-        ["Posición", result.position],
-        ["Puntos", result.points],
-        ["Vueltas", result.number_of_laps],
-    ];
-
-    if (result.gap_to_leader) {
-        statData.push(["Gap líder", `+${result.gap_to_leader}s`]);
-    }
-
-    statData.forEach(([label, value]) => {
-        const row = document.createElement("div");
-        row.classList.add("driver-stat");
-        row.innerHTML = `<span>${label}</span><span>${value}</span>`;
-        stats.appendChild(row);
-    });
-
-    // Estado
-    const status = document.createElement("div");
-    status.classList.add("driver-status");
-    status.textContent =
-        result.dnf ? "ABANDONÓ" :
-        result.dsq ? "DESCALIFICADO" :
-        "CARRERA TERMINADA";
-
-    // ENSAMBLAR INFO
-    info.appendChild(name);
-    info.appendChild(team);
-    info.appendChild(stats);
-    info.appendChild(status);
-
-    // ENSAMBLAR TODO
-    inner.appendChild(imageWrapper);
-    inner.appendChild(info);
-
-    detailContainer.appendChild(inner);
 }
 
 
+/* =========================
+   RENDER CARRERA
+========================= */
+function renderRaceCard(result) {
+    const card = document.createElement("article");
+    card.classList.add("result-card");
+
+    card.innerHTML = `
+        <h3 class="result-card__title">Carrera</h3>
+        <div class="result-stat"><span>Posición</span><span>${result.position}</span></div>
+        <div class="result-stat"><span>Puntos</span><span>${result.points}</span></div>
+        <div class="result-stat"><span>Vueltas</span><span>${result.number_of_laps}</span></div>
+        <div class="result-stat"><span>Distancia del líder</span><span>${result.gap_to_leader}</span></div>
+    `;
+
+    resultsContainer.appendChild(card);
+}
+
+function renderDriverSummary(driver) {
+    const container = document.getElementById("driver-summary");
+    container.innerHTML = "";
+    const card = document.createElement("article");
+    card.classList.add("driver-summary");
+
+    card.innerHTML = `
+    <h3 class="result-card__title">${driver.full_name}</h3>
+    <div class="result-stat"><span>Equipo </span><span>${driver.team_name}</span></div>
+    `
+
+    container.appendChild(card);
+}
+
+/* =========================
+   RENDER QUALY (ROBUSTO)
+========================= */
+function renderQualiCard(result) {
+    const card = document.createElement("article");
+    card.classList.add("result-card");
+
+    if (!result) {
+        card.innerHTML = `
+            <h3 class="result-card__title">Clasificación</h3>
+            <div class="result-status">SIN DATOS DISPONIBLES</div>
+        `;
+        resultsContainer.appendChild(card);
+        return;
+    }
+
+    const q1 = result.duration?.[0] ?? "No clasificado";
+    const q2 = result.duration?.[1] ?? "No clasificado";
+    const q3 = result.duration?.[2] ?? "No clasificado";
+
+    card.innerHTML = `
+        <h3 class="result-card__title">Clasificación</h3>
+        <div class="result-stat"><span>Posición</span><span>${result.position}</span></div>
+        <div class="result-stat"><span>Q1</span><span>${formatLapTime(q1)}</span></div>
+        <div class="result-stat"><span>Q2</span><span>${formatLapTime(q2)}</span></div>
+        <div class="result-stat"><span>Q3</span><span>${formatLapTime(q3)}</span></div>
+    `;
+
+    resultsContainer.appendChild(card);
+}
+
+function formatLapTime(seconds) {
+    if (seconds == null || isNaN(seconds)) return "—";
+
+    const mins = Math.floor(seconds / 60);
+    const secs = (seconds % 60).toFixed(3);
+
+    return `${mins}:${secs.padStart(6, "0")}`;
+}
 
 
