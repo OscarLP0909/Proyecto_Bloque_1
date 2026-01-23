@@ -111,6 +111,7 @@ nav.navbar {
 }
 
 .driver-card:hover {
+    cursor: pointer;
     transform: translateY(-4px);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18);
 }
