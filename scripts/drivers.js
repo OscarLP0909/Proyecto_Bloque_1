@@ -29,7 +29,7 @@ const countryMap = {
 
 const container_piloto = document.getElementById("drivers-container")
 
-fetch("https://api.openf1.org/v1/drivers?session_key=9839")
+fetch("https://api.openf1.org/v1/drivers?session_key=9837")
     .then((response) => response.json())
     .then((jsonContent) =>
         jsonContent.forEach(driver => {
